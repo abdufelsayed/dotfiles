@@ -1,85 +1,126 @@
-#-----------
-# ZSH
-#-----------
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# ==============================================================================
+# Powerlevel10k Instant Prompt (must stay at the top)
+# ==============================================================================
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 fi
 
-# Path to your oh-my-zsh installation.
+# ==============================================================================
+# Environment Variables
+# ==============================================================================
 export ZSH="$HOME/.oh-my-zsh"
-
-# ZSH Theme
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# ZSH Settings
-CASE_SENSITIVE="true"
-ENABLE_CORRECTION="true"
-
-zstyle ':omz:update' mode auto      # update automatically without asking
-
-# ZSH Plugins
-plugins=(git
-         poetry
-         zsh-autosuggestions
-         zsh-syntax-highlighting
-         colored-man-pages)
-
-# Download Znap, if it's not there yet.
-[[ -r ~/Repos/znap/znap.zsh ]] ||
-    git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git ~/Repos/znap
-source ~/Repos/znap/znap.zsh
-
-# Install autocomplete plugin
-znap source marlonrichert/zsh-autocomplete
-
-source $ZSH/oh-my-zsh.sh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# -------------
-# Aliases
-# -------------
-
-# exa aliases
-if [ -x "$(command -v eza)" ]; then
-    alias ls="eza"
-    alias la="eza --long --all --group --icons --git"
-    alias ll="eza --long --group --icons --git"
-    alias llt="eza -2 --icons --tree --git-ignore"
-fi
-
-# zoxide aliases
-if [ -x "$(command -v zi)" ]; then
-    alias cd="zi"
-fi
-
-# search alias
-alias search="fzf --preview 'bat --color=always --style=numbers --line-range=:499 {}' | xargs lvim"
-
-# -------------
-# NVM
-# -------------
-
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# -------------
-# PNPM
-# -------------
 export PNPM_HOME="/Users/abdllahdev/Library/pnpm"
+export BUN_INSTALL="$HOME/.bun"
+export PYENV_ROOT="$HOME/.pyenv"
+export POETRY_PYTHON=$(pyenv which python)
+
+# ==============================================================================
+# PATH Configuration
+# ==============================================================================
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:/Users/abdllahdev/.local/bin"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+export PATH="$BUN_INSTALL/bin:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# -------------
-# Update Path
-# -------------
-export PATH="$PATH:/Users/abdllahdev/.local/bin"
+# opencode
+export PATH=/Users/abdllahdev/.opencode/bin:$PATH
+
+# Ghostty
+export PATH="/Applications/Ghostty.app/Contents/MacOS:$PATH"
+
+# ==============================================================================
+# Oh-My-Zsh Configuration
+# ==============================================================================
+# Store completion cache in ~/.cache/zsh instead of home directory
+export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump-$HOST"
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+zstyle ':omz:update' mode auto
+
+plugins=(
+  git
+  you-should-use
+  zsh-syntax-highlighting
+  zsh-completions
+  zsh-autosuggestions
+  colored-man-pages
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# ==============================================================================
+# Znap Plugin Manager
+# ==============================================================================
+[[ -r ~/.local/share/zsh/znap/znap.zsh ]] ||
+  git clone --depth 1 -- \
+    https://github.com/marlonrichert/zsh-snap.git ~/.local/share/zsh/znap
+
+source ~/.local/share/zsh/znap/znap.zsh
+znap source marlonrichert/zsh-autocomplete
+
+# ==============================================================================
+# Tool Initializations
+# ==============================================================================
+# NVM
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Opam
+eval $(opam env)
+
+# Pyenv
+eval "$(pyenv init -)"
+
+# FZF
+source <(fzf --zsh)
+
+# Zoxide
+eval "$(zoxide init --cmd cd zsh)"
+
+# Julia
+path=('/Users/abdllahdev/.juliaup/bin' $path)
+export PATH
+
+# ==============================================================================
+# Completions
+# ==============================================================================
+# Bun completions
+[ -s "/Users/abdllahdev/.bun/_bun" ] && source "/Users/abdllahdev/.bun/_bun"
+
+# Google Cloud SDK
+if [ -f '/Users/abdllahdev/.local/share/google-cloud-sdk/path.zsh.inc' ]; then
+  . '/Users/abdllahdev/.local/share/google-cloud-sdk/path.zsh.inc'
+fi
+
+if [ -f '/Users/abdllahdev/.local/share/google-cloud-sdk/completion.zsh.inc' ]; then
+  . '/Users/abdllahdev/.local/share/google-cloud-sdk/completion.zsh.inc'
+fi
+
+# ==============================================================================
+# Aliases
+# ==============================================================================
+# eza (modern ls replacement)
+if [ -x "$(command -v eza)" ]; then
+  alias ls="eza"
+  alias la="eza --long --all --group --icons --git"
+  alias ll="eza --long --group --icons --git"
+  alias llt="eza -2 --icons --tree --git-ignore"
+fi
+
+# FZF search with bat preview
+alias search="fzf --preview 'bat --color=always --style=numbers --line-range=:499 {}' | xargs lvim"
+
+# ==============================================================================
+# Powerlevel10k Configuration (must stay at the bottom)
+# ==============================================================================
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+. "$HOME/.local/share/../bin/env"
