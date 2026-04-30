@@ -10,4 +10,4 @@ keybind = ctrl+a>r=reload_config
 window-save-state = always
 
 shell-integration = detect
-shell-integration-features = ssh-terminfo,ssh-env
+shell-integration-features = ssh-terminfo,ssh-env,cursor,sudo,title

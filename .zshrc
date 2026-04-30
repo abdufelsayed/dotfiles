@@ -21,7 +21,7 @@ export POETRY_PYTHON=$(pyenv which python)
 # ==============================================================================
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$PATH:/Users/abdllahdev/.local/bin"
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
@@ -124,3 +124,36 @@ alias search="fzf --preview 'bat --color=always --style=numbers --line-range=:49
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 . "$HOME/.local/share/../bin/env"
+
+# Added by Antigravity
+export PATH="/Users/abdllahdev/.antigravity/antigravity/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/abdllahdev/.antigravity/antigravity/bin:$PATH"
+
+# >>> forge initialize >>>
+# !! Contents within this block are managed by 'forge zsh setup' !!
+# !! Do not edit manually - changes will be overwritten !!
+
+# Add required zsh plugins if not already present
+if [[ ! " ${plugins[@]} " =~ " zsh-autosuggestions " ]]; then
+    plugins+=(zsh-autosuggestions)
+fi
+if [[ ! " ${plugins[@]} " =~ " zsh-syntax-highlighting " ]]; then
+    plugins+=(zsh-syntax-highlighting)
+fi
+
+# Load forge shell plugin (commands, completions, keybindings) if not already loaded
+if [[ -z "$_FORGE_PLUGIN_LOADED" ]]; then
+    eval "$(forge zsh plugin)"
+fi
+
+# Load forge shell theme (prompt with AI context) if not already loaded
+if [[ -z "$_FORGE_THEME_LOADED" ]]; then
+    eval "$(forge zsh theme)"
+fi
+
+# Editor for editing prompts (set during setup)
+# To change: update FORGE_EDITOR or remove to use $EDITOR
+export FORGE_EDITOR="code --wait"
+# <<< forge initialize <<<
