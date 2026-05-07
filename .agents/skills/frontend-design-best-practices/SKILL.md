@@ -1,6 +1,6 @@
 ---
 name: frontend-design-best-practices
-description: Research-first UI design and implementation guidance for React, Base UI, shadcn/ui, and Tailwind work. Use whenever you are creating, restyling, or extending a UI component, page section, form, dashboard card, navigation element, empty state, or other visual surface. This skill requires inspecting existing repo patterns first, then studying matching REUI/Base UI patterns before writing code so the result stays simple, coherent, accessible, and visually restrained.
+description: Research-first UI design and implementation guidance for React, Base UI, shadcn/ui, and Tailwind work. Use whenever you are creating, restyling, or extending a UI component, page section, form, dashboard card, navigation element, empty state, or other visual surface. This skill requires inspecting existing repo patterns first, then studying matching shadcn registry sources and REUI/Base UI patterns before writing code so the result stays simple, coherent, accessible, and visually restrained.
 ---
 
 # UI Pattern First
@@ -9,7 +9,7 @@ Treat this skill as mandatory for UI creation and UI update tasks.
 
 ## Overview
 
-Do not invent UI from scratch when an existing pattern already solves the problem. Before writing code, inspect both the local design system and at least one relevant REUI pattern. Favor calm, coherent interfaces: simple structure, clear hierarchy, restrained motion, and the existing token palette.
+Do not invent UI from scratch when an existing pattern already solves the problem. Before writing code, inspect the local design system, then inspect relevant shadcn registry sources and at least one relevant REUI pattern when visual pattern guidance is needed. Favor calm, coherent interfaces: simple structure, clear hierarchy, restrained motion, and the existing token palette.
 
 ## Required Workflow
 
@@ -19,16 +19,25 @@ Do not invent UI from scratch when an existing pattern already solves the proble
    - Reuse existing imports, slot names, radii, spacing rhythm, and semantic tokens such as `bg-card`, `text-muted-foreground`, `ring-foreground/10`, `bg-muted`, `border-input`, and `focus-visible:ring-ring/50`.
    - Keep using `cn()` and the current package boundaries.
 
-2. Find a matching REUI pattern before coding.
-   - Start with the visual catalog: `https://reui.io/patterns/<component>`.
+2. Find matching shadcn and REUI references before coding.
+   - For shadcn/ui projects, use the project's package runner from `packageManager`: `npx shadcn@latest`, `pnpm dlx shadcn@latest`, `yarn dlx shadcn@latest`, or `bunx --bun shadcn@latest`.
+   - Run `shadcn info` when project context is missing or stale so imports, aliases, Tailwind version, base library, icon library, and installed components are not guessed.
+   - Use `shadcn docs <component>` for component docs, examples, and API URLs before implementing or changing a shadcn component.
+   - Use `shadcn search <registry> -q "<query>"` to find registry items by job-to-be-done.
+   - Use `shadcn view <item>` to inspect registry item details and file contents before installing an item, especially namespaced registry items such as `@shadcn/button`, `@tailark/...`, or `@v0/...`.
+   - Use `shadcn add <item> --view [path]` when you need a project-aware preview of the exact files the CLI would write. Use `shadcn add <item> --diff [path]` for existing components or CSS changes. These preview commands imply dry-run behavior.
+   - Do not fetch raw registry files manually when `shadcn view` or `shadcn add --view` can show the source through the CLI.
+   - For REUI, make sure `components.json` has the `@reui` registry namespace: `"@reui": "https://reui.io/r/{style}/{name}.json"`.
+   - For REUI pattern discovery, start with the visual catalog: `https://reui.io/patterns/<component>`.
    - If the component name is unclear, search the visual catalog: `https://reui.io/patterns?search=<query>`.
    - Read the pattern names and short descriptions on the docs first so you know what each numbered variant is for before fetching code.
-   - Use those labels to shortlist by purpose. Example: avatar pattern `3` is `Avatars with different sizes`, so fetch `p-avatar-3.tsx` only if that behavior matches the task.
-   - If you need code, open the matching GitHub folder or raw file URL. See [references.md](references.md).
+   - Use those labels to shortlist by purpose. Example: accordion pattern `1` maps to `@reui/c-accordion-1`, so inspect it with `shadcn view @reui/c-accordion-1`.
+   - If `shadcn search @reui` cannot read a registry index, use the REUI visual catalog for discovery and `shadcn view @reui/<name>` for source inspection.
+   - If you need code, prefer `shadcn view @reui/<name>` or `shadcn add @reui/<name> --view [path]`. Use GitHub folders or raw URLs only as a fallback when the registry or CLI is unavailable. See [references.md](references.md).
    - Match by structure and job-to-be-done, not only by component name. A settings picker may map to `select`, `dropdown-menu`, `combobox`, or `command`.
 
 3. Choose a pattern direction.
-   - Pick one to three candidate patterns by number and stated purpose from the docs.
+   - Pick one to three candidate shadcn registry items or REUI patterns by name, number, and stated purpose from the docs.
    - Note what you are borrowing: layout, density, slot composition, affordances, spacing, icon treatment, or state handling.
    - Prefer the simplest pattern that satisfies the UX.
 
@@ -60,7 +69,7 @@ Do not invent UI from scratch when an existing pattern already solves the proble
 - `card`, `table`, `tabs`, `accordion`, `drawer`, `dialog`: structural containers and information grouping
 - `empty`, `alert`, `tooltip`, `badge`: supporting states and secondary affordances
 
-If the component category is unclear, inspect the REUI pattern index first and choose by job-to-be-done.
+If the component category is unclear, inspect shadcn search results and the REUI pattern index first, then choose by job-to-be-done.
 
 ## Local Style Anchors
 

@@ -1,6 +1,42 @@
-# REUI Sources
+# UI Pattern Sources
 
 Use these sources in this order.
+
+## shadcn CLI
+
+- Official CLI docs: `https://ui.shadcn.com/docs/cli`
+- Prefer the project's package runner from `packageManager`:
+  - `npx shadcn@latest`
+  - `pnpm dlx shadcn@latest`
+  - `yarn dlx shadcn@latest`
+  - `bunx --bun shadcn@latest`
+- Use `shadcn info` to confirm project context before changing imports, tokens, or component source.
+- Use `shadcn docs <component>` to get official docs, example, and API URLs.
+- Use `shadcn search <registry> -q "<query>"` to discover registry items.
+- Use `shadcn view <item>` to inspect registry item details and file contents before installing.
+- Use `shadcn add <item> --view [path]` to preview the exact project-resolved file contents that would be written.
+- Use `shadcn add <item> --diff [path]` to compare upstream source against existing local files.
+- Prefer `add --view` or `add --diff` over raw URLs when the preview needs project aliases, resolved paths, CSS changes, or local diffs.
+
+## REUI Registry
+
+- Registry docs: `https://reui.io/docs/registry`
+- Add the REUI namespace to `components.json` when it is missing:
+
+```json
+{
+  "registries": {
+    "@reui": "https://reui.io/r/{style}/{name}.json"
+  }
+}
+```
+
+- Use REUI item names through the shadcn CLI:
+  - `shadcn view @reui/c-accordion-1`
+  - `shadcn add @reui/c-accordion-1 --view`
+  - `shadcn add @reui/filters --view`
+- Prefer the REUI visual catalog to discover item names, then use `shadcn view @reui/<name>` to inspect source.
+- If `shadcn search @reui` cannot read a registry index, do not fall back to manual GitHub scraping for discovery. Use the visual catalog, then inspect the selected item through `shadcn view`.
 
 ## Visual Catalog
 
@@ -16,6 +52,7 @@ Use these sources in this order.
 
 ## GitHub Pattern Folder
 
+- Fallback only. Prefer `shadcn view @reui/<name>` for source inspection.
 - URL template: `https://github.com/keenthemes/reui/tree/main/registry-reui/bases/base/patterns/<component>`
 - Examples:
   - `https://github.com/keenthemes/reui/tree/main/registry-reui/bases/base/patterns/select`
@@ -24,6 +61,7 @@ Use these sources in this order.
 
 ## Raw Pattern File
 
+- Fallback only. Prefer `shadcn view @reui/<name>` or `shadcn add @reui/<name> --view [path]`.
 - URL template: `https://raw.githubusercontent.com/keenthemes/reui/main/registry-reui/bases/base/patterns/<component>/p-<component>-<n>.tsx`
 - Example:
   - `https://raw.githubusercontent.com/keenthemes/reui/main/registry-reui/bases/base/patterns/select/p-select-1.tsx`
