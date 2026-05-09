@@ -1,0 +1,4 @@
+interface:
+  display_name: "Interface Design"
+  short_description: "Design product UI and SaaS marketing pages."
+  default_prompt: "Use $interface-design to design or refine this UI with clear UX, coherent composition, local patterns, and the right product or SaaS marketing guidance."
