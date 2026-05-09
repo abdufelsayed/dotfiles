@@ -1,6 +1,17 @@
-# UI Pattern Sources
+# Pattern Discovery
 
-Use these sources in this order.
+Use this when local patterns are unclear, when a surface is complex enough to benefit from proven examples, or when working in a shadcn/ui, REUI, Base UI, or Tailwind project.
+
+## Local First
+
+- Inspect nearby route files, shared components, design-system primitives, and existing app-level compositions before using external sources.
+- Search common UI locations such as `packages/ui/src/components`, `components/ui`, `src/components`, `apps/web/src/components`, and the relevant route or page folder.
+- Reuse existing imports, slot names, package boundaries, `cn()`, tokens, radii, focus rings, and accessibility primitives.
+- When the local system already has a clear pattern, adapt it instead of importing a new visual language.
+
+## External References
+
+Use external references to answer a specific composition or implementation question. The goal is to borrow structure, density, affordances, and state handling, then translate the result into the local system.
 
 ## shadcn CLI
 
@@ -10,7 +21,7 @@ Use these sources in this order.
   - `pnpm dlx shadcn@latest`
   - `yarn dlx shadcn@latest`
   - `bunx --bun shadcn@latest`
-- Use `shadcn info` to confirm project context before changing imports, tokens, or component source.
+- Use `shadcn info` when project context is missing or stale so imports, aliases, Tailwind version, base library, icon library, and installed components are not guessed.
 - Use `shadcn docs <component>` to get official docs, example, and API URLs.
 - Use `shadcn search <registry> -q "<query>"` to discover registry items.
 - Use `shadcn view <item>` to inspect registry item details and file contents before installing.
@@ -36,7 +47,7 @@ Use these sources in this order.
   - `shadcn add @reui/c-accordion-1 --view`
   - `shadcn add @reui/filters --view`
 - Prefer the REUI visual catalog to discover item names, then use `shadcn view @reui/<name>` to inspect source.
-- If `shadcn search @reui` cannot read a registry index, do not fall back to manual GitHub scraping for discovery. Use the visual catalog, then inspect the selected item through `shadcn view`.
+- If `shadcn search @reui` cannot read a registry index, use the visual catalog for discovery and inspect the selected item through `shadcn view` when possible.
 
 ## Visual Catalog
 
@@ -79,5 +90,6 @@ Use these sources in this order.
 
 - REUI pattern files commonly export `Pattern` and import from `@/registry/bases/base/ui/...`.
 - Treat those imports as reference implementations, not as drop-in imports for this repo.
-- Map REUI structure into local `@starter/ui/components/...` primitives or existing app-level compositions.
-- Copy layout, density, and interaction ideas. Do not copy branding blindly.
+- Map REUI structure into local primitives or existing app-level compositions.
+- Copy layout, density, interaction ideas, and state handling. Do not copy branding blindly.
+- Prefer the simplest pattern that satisfies the user task.
