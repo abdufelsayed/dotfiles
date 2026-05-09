@@ -186,6 +186,40 @@ function useUpdateProject() {
 
 Use `router.invalidate()` when route loaders or `beforeLoad` context also need to rerun. Use `queryClient.invalidateQueries()` for Query-owned server state.
 
+If the UI must wait until active route loaders finish, use:
+
+```tsx
+await router.invalidate({ sync: true })
+```
+
+Otherwise, router invalidation can happen in the background while existing route data remains visible.
+
+## Forms And Actions
+
+For forms, keep the server boundary in a `POST` server function. Use `FormData` when the form is mostly native HTML, or a typed object when a client form library already has parsed values.
+
+```tsx
+export const createProject = createServerFn({ method: 'POST' })
+  .middleware([authMiddleware])
+  .inputValidator((formData) => {
+    if (!(formData instanceof FormData)) {
+      throw new Error('Expected FormData')
+    }
+
+    return {
+      name: String(formData.get('name') ?? ''),
+    }
+  })
+  .handler(async ({ data, context }) => {
+    return db.projects.create({
+      name: data.name,
+      userId: context.session.userId,
+    })
+  })
+```
+
+When the mutation affects Query-owned data, wrap the server function with `useMutation` and invalidate the relevant keys. When it changes route access, search-driven loader output, or layout context, also call `router.invalidate()`.
+
 ## Auth And Query
 
 Auth-sensitive queries must call server functions that enforce auth. Do not rely on a protected route to secure the query.

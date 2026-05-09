@@ -12,15 +12,28 @@ Use these sources when answering TanStack Start questions. Prefer current offici
 - Code Execution Patterns: https://tanstack.com/start/latest/docs/framework/react/guide/code-execution-patterns
 - Import Protection: https://tanstack.com/start/latest/docs/framework/react/guide/import-protection
 - Environment Variables: https://tanstack.com/start/latest/docs/framework/react/guide/environment-variables
+- Environment Functions: https://tanstack.com/start/latest/docs/framework/react/guide/environment-functions
 - Server Functions: https://tanstack.com/start/latest/docs/framework/react/guide/server-functions
+- Server Functions v0 reference: https://tanstack.com/start/v0/docs/framework/react/guide/server-functions
+- Static Server Functions: https://tanstack.com/start/latest/docs/framework/react/guide/static-server-functions
 - Middleware: https://tanstack.com/start/latest/docs/framework/react/guide/middleware
+- Error Boundaries: https://tanstack.com/start/latest/docs/framework/react/guide/error-boundaries
 - Server Routes: https://tanstack.com/start/latest/docs/framework/react/guide/server-routes
+- Hydration Errors: https://tanstack.com/start/latest/docs/framework/react/guide/hydration-errors
 - Authentication Overview: https://tanstack.com/start/latest/docs/framework/react/guide/authentication-overview
 - Authentication: https://tanstack.com/start/latest/docs/framework/react/guide/authentication
+- Databases: https://tanstack.com/start/latest/docs/framework/react/guide/databases
+- Observability: https://tanstack.com/start/latest/docs/framework/react/guide/observability
+- Path Aliases: https://tanstack.com/start/latest/docs/framework/react/guide/path-aliases
+- Tailwind CSS Integration: https://tanstack.com/start/latest/docs/framework/react/guide/tailwind
+- SEO: https://tanstack.com/start/latest/docs/framework/react/guide/seo
 - Authentication Server Primitives: https://tanstack.com/start/v0/docs/framework/react/guide/authentication-server-primitives
 - Selective SSR: https://tanstack.com/start/latest/docs/framework/react/guide/selective-ssr
+- SPA Mode: https://tanstack.com/start/latest/docs/framework/react/guide/spa-mode
 - Static Prerendering: https://tanstack.com/start/latest/docs/framework/react/guide/static-prerendering
 - ISR: https://tanstack.com/start/latest/docs/framework/react/guide/isr
+- Server Entry Point: https://tanstack.com/start/latest/docs/framework/react/guide/server-entry-point
+- Client Entry Point: https://tanstack.com/start/latest/docs/framework/react/guide/client-entry-point
 - Hosting: https://tanstack.com/start/latest/docs/framework/react/guide/hosting
 
 ## Official TanStack Router
@@ -31,11 +44,20 @@ Start relies on Router. Use Router docs for route mechanics.
 - File naming conventions: https://tanstack.com/router/latest/docs/routing/file-naming-conventions
 - Path params: https://tanstack.com/router/latest/docs/guide/path-params
 - Search params: https://tanstack.com/router/latest/docs/guide/search-params
+- Search validation how-to: https://tanstack.com/router/latest/docs/framework/react/how-to/validate-search-params
 - Data loading: https://tanstack.com/router/latest/docs/guide/data-loading
+- Data mutations: https://tanstack.com/router/latest/docs/framework/react/guide/data-mutations
 - Router context: https://tanstack.com/router/latest/docs/guide/router-context
 - Authenticated routes: https://tanstack.com/router/latest/docs/guide/authenticated-routes
 - Type safety: https://tanstack.com/router/latest/docs/guide/type-safety
 - TanStack Query integration: https://tanstack.com/router/latest/docs/integrations/query
+- Search navigation how-to: https://tanstack.com/router/latest/docs/framework/react/how-to/navigate-with-search-params
+- Navigation: https://tanstack.com/router/latest/docs/framework/react/guide/navigation
+- Redirects: https://tanstack.com/router/latest/docs/framework/react/guide/redirects
+- Not Found Errors: https://tanstack.com/router/latest/docs/framework/react/guide/not-found-errors
+- Link Options: https://tanstack.com/router/latest/docs/framework/react/guide/link-options
+- Router Devtools: https://tanstack.com/router/latest/docs/framework/react/devtools
+- Route masking: https://tanstack.com/router/latest/docs/guide/route-masking
 
 ## Official Examples
 

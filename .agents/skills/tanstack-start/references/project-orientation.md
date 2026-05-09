@@ -1,6 +1,6 @@
 # Project Orientation
 
-Use this when reviewing an existing TanStack Start React app before giving advice.
+Use this when reviewing an existing TanStack Start React app before recommending patterns or changing code.
 
 ## Files To Inspect
 

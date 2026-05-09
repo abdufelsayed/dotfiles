@@ -144,6 +144,38 @@ function ProjectsToolbar() {
 
 For components outside the route module, use `getRouteApi('/projects')` or `useSearch({ from: '/projects' })`.
 
+## Navigation Rules
+
+Use typed navigation objects. Do not build URLs by interpolating params/search manually.
+
+Good:
+
+```tsx
+<Link
+  to="/orgs/$orgId/projects/$projectId"
+  params={{ orgId, projectId }}
+  search={(prev) => ({ ...prev, tab: 'settings' })}
+/>
+```
+
+Bad:
+
+```tsx
+<Link to={`/orgs/${orgId}/projects/${projectId}?tab=settings`} />
+```
+
+Use functional `search` updates when changing one piece of URL state and preserving the rest.
+
+## Search Middlewares
+
+Use search middlewares sparingly when generated links should preserve or transform inherited search state. Good cases:
+
+- preserve a root-level locale or workspace search param
+- strip temporary modal/search UI state from child links
+- normalize search defaults before href generation
+
+Do not use search middleware as a substitute for route-local `validateSearch`.
+
 ## Standard Schema
 
 Standard Schema lets validation libraries plug into Router without adapters. Valibot, ArkType, and Effect Schema can be passed directly when they implement Standard Schema. Zod often uses `zodValidator` or Zod v4-compatible schema behavior depending on the version and desired input/output types.
