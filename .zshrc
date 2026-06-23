@@ -157,3 +157,6 @@ fi
 # To change: update FORGE_EDITOR or remove to use $EDITOR
 export FORGE_EDITOR="code --wait"
 # <<< forge initialize <<<
+
+# Added by Antigravity IDE
+export PATH="/Users/abdllahdev/.antigravity-ide/antigravity-ide/bin:$PATH"

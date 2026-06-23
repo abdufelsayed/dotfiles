@@ -1,0 +1,4 @@
+interface:
+  display_name: "Real World OCaml"
+  short_description: "Write production-quality OCaml"
+  default_prompt: "Use $real-world-ocaml to implement this OCaml change with idiomatic module, Dune, opam, and testing practices."
