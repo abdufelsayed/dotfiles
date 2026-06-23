@@ -5,40 +5,60 @@ description: "Use when writing, reviewing, refactoring, testing, documenting, pa
 
 # Real World OCaml
 
-Use this skill to behave like an OCaml engineer inside real repositories. It distills Real World OCaml and mature repository practice into operational guidance for agents. Do not treat OCaml as syntax plus pattern matching. Shape types, module boundaries, public interfaces, build metadata, and tests before filling in implementation details.
+Use this skill to behave like an OCaml engineer inside real repositories while spending as few input tokens as possible. It distills Real World OCaml and mature repository practice into targeted references. Do not treat OCaml as syntax plus pattern matching. Shape types, module boundaries, public interfaces, build metadata, and tests before filling in implementation details.
+
+## Token Discipline
+
+Default to the smallest useful context.
+
+- For a tiny, obvious edit in a familiar repo, read no reference unless the code shape is risky.
+- For an unfamiliar repo, read `references/orientation.md` first, then at most one topic reference.
+- For API/build/architecture changes, read only the 2-3 references that match the change surface.
+- For broad reviews, migrations, packaging, or type-system design, use `scripts/ref-search.py` before opening long references.
+- Never load all references "just in case." Search first, open narrowly, then expand only when blocked.
+
+Each reference has YAML frontmatter with `summary`, `load_when`, `skip_when`, and `search_terms`. Treat that frontmatter as the routing contract. Prefer `scripts/ref-search.py --list` or a targeted query over opening reference files to inspect their purpose.
 
 ## First Pass
 
 Before changing OCaml code:
 
-1. Inspect `dune-project`, local `dune` files, `*.opam`, `.ocamlformat`, `.mli`, test directories, docs, and PPX stanzas.
-   If no OCaml project metadata is present and the user did not explicitly ask for a new project, stop and clarify whether to create one rather than assuming an existing layout. If the user did ask for a new project, proceed with a minimal local Dune layout.
-2. Detect the local style: Stdlib, Base, or Core; Lwt, Async, Eio, or synchronous IO; public library, private library, executable, test, or tooling package.
-3. Read the `.mli` before the `.ml`; update both when changing public behavior.
-4. Preserve package and dependency boundaries. Do not add Unix, threads, Lwt, Async, Eio, PPX, or Base/Core dependencies to portable core libraries casually.
-5. Prefer type and API design first: model impossible states out, expose abstract types when invariants matter, and design for call sites.
-6. Load only the topic references needed for the task.
-7. Verify with the narrowest relevant Dune/opam target first, then broaden when the change touches public API, package metadata, docs, or tests.
-
-Start with `references/orientation.md` for the complete repo audit workflow and reference map.
+1. Inspect `dune-project`, nearest `dune`, `*.opam`, `.ocamlformat`, `.mli`, tests, docs, and PPX stanzas.
+2. If no OCaml metadata exists and the user did not ask for a new project, clarify before scaffolding. If creation is explicit, use a minimal local Dune layout.
+3. Detect dialect and runtime: Stdlib/Base/Core; sync/Lwt/Async/Eio; public/private/test/executable/package.
+4. Read `.mli` before `.ml`; update both when public behavior changes.
+5. Preserve boundaries: do not casually add Unix, threads, Lwt, Async, Eio, PPX, Base, or Core to portable libraries.
+6. Select references from the routing table below, inspect frontmatter with `python3 scripts/ref-search.py --list`, or run `python3 scripts/ref-search.py "<query>"`.
+7. Verify with the narrowest Dune/opam target first; broaden only for public API, package, docs, or shared behavior.
 
 ## Reference Map
 
-- `references/functions-labels-and-api-shape.md`: function shape, labeled/optional arguments, call-site design, argument order, partial application.
-- `references/patterns-lists-and-recursion.md`: pattern matching, list recursion, folds, tail recursion, match exhaustiveness.
-- `references/records-variants-and-domain-modeling.md`: records, variants, polymorphic variants, embedded records, domain modeling, refactoring hazards.
-- `references/gadts-type-witnesses-and-existentials.md`: GADTs, locally abstract types, polymorphic recursion, typed ASTs, equality witnesses, existentials.
-- `references/modules-signatures-and-interfaces.md`: files as modules, `.mli` contracts, abstract types, nested modules, openings, includes.
-- `references/functors-first-class-modules-and-objects.md`: functors, first-class modules, sharing constraints, destructive substitution, object use cases.
-- `references/errors-results-exceptions-and-resource-safety.md`: `option`, `result`, `Error.t`, `Or_error`, exceptions, cleanup, resource safety.
-- `references/collections-comparators-maps-and-hashtables.md`: maps, sets, hashtables, comparator witnesses, explicit equality, polymorphic compare pitfalls.
-- `references/serialization-json-sexps-and-parsing.md`: sexps, JSON, ppx deriving, ATD, ocamllex, Menhir, parser boundaries.
-- `references/testing-expect-cram-and-properties.md`: inline tests, expect tests, property tests, cram tests, deterministic test output.
-- `references/concurrency-io-and-effects.md`: Async, Lwt, Eio, blocking IO, cancellation, scheduler entrypoints, concurrency boundaries.
-- `references/runtime-memory-gc-and-performance.md`: runtime representation, allocation, polymorphic comparison cost, GC, tail recursion, performance checks.
-- `references/compiler-ppx-ffi-and-codegen.md`: compiler frontend/backend, PPX, generated code, FFI, stubs, runtime/debug tooling.
-- `references/dune-opam-odoc-and-release.md`: Dune structure, opam metadata, generated opam files, odoc, ocamlformat, release etiquette.
-- `references/real-repo-patterns-and-agent-pitfalls.md`: patterns from mature OCaml repos and mistakes agents commonly make.
+Open only what matches the task:
+
+- New/unfamiliar repo audit: `orientation.md`.
+- Function signatures, labels, optional args, pipelines: `functions-labels-and-api-shape.md`.
+- Pattern matching, list recursion, folds, exhaustiveness: `patterns-lists-and-recursion.md`.
+- Domain modeling with records/variants/polymorphic variants: `records-variants-and-domain-modeling.md`.
+- GADTs, typed ASTs, witnesses, existentials: `gadts-type-witnesses-and-existentials.md`.
+- `.mli`, abstract types, modules, `open`, `include`: `modules-signatures-and-interfaces.md`.
+- Functors, first-class modules, objects/classes: `functors-first-class-modules-and-objects.md`.
+- Errors, `option`/`result`, exceptions, cleanup: `errors-results-exceptions-and-resource-safety.md`.
+- Map/Set/Hashtbl, comparators, equality, polymorphic compare: `collections-comparators-maps-and-hashtables.md`.
+- Sexps, JSON, deriving, parsers, Menhir/ocamllex: `serialization-json-sexps-and-parsing.md`.
+- Tests, expect, cram, properties, deterministic output: `testing-expect-cram-and-properties.md`.
+- Lwt/Async/Eio, blocking IO, cancellation, backpressure: `concurrency-io-and-effects.md`.
+- Allocation, representation, GC, perf hot paths: `runtime-memory-gc-and-performance.md`.
+- PPX, generated code, compiler internals, FFI/stubs: `compiler-ppx-ffi-and-codegen.md`.
+- Dune, opam, odoc, release metadata: `dune-opam-odoc-and-release.md`.
+- Mature repo style and agent anti-patterns: `real-repo-patterns-and-agent-pitfalls.md`.
+
+If uncertain, run:
+
+```bash
+python3 /path/to/real-world-ocaml/scripts/ref-search.py "typed AST equality witness"
+```
+
+Then open the reported file around the best heading. If the top hit is a `metadata` hit, read that file's frontmatter first; if it matches, open the relevant section.
 
 ## Working Rules
 

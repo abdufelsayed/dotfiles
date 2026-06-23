@@ -1,3 +1,18 @@
+---
+summary: Functors, first-class modules, objects/classes, records of callbacks, variants, dependency injection, backends, sharing constraints, and comparator-backed construction.
+load_when:
+  - Task chooses between functors, first-class modules, objects/classes, records of callbacks, variants, dependency injection, backends, sharing constraints, output constraints, or comparator-backed construction.
+skip_when:
+  - Task is an ordinary module interface edit without abstraction variation.
+search_terms:
+  - Make
+  - with type
+  - destructive substitution
+  - first-class module
+  - sharing constraints
+  - objects
+  - classes
+---
 # Functors, First-Class Modules, And Objects
 
 ## Core Judgment

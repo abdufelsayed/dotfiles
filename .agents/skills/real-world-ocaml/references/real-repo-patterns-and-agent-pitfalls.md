@@ -1,3 +1,18 @@
+---
+summary: Mature repo architecture, style boundaries, .mli discipline, package layering, generated files, CI commands, internal libraries, and agent anti-patterns.
+load_when:
+  - Work is in a mature/large repo, review, migration, style mismatch, package layering question, generated-file uncertainty, CI-command selection, or edit that might violate local architecture.
+skip_when:
+  - Task is an isolated greenfield exercise.
+search_terms:
+  - .mli discipline
+  - portable core
+  - internal libraries
+  - generated files
+  - Core
+  - CI commands
+  - thin CLI
+---
 # Real repo patterns and agent pitfalls
 
 ## Core judgment

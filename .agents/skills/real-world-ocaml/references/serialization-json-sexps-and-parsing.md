@@ -1,4 +1,21 @@
+---
+summary: Serialization, sexps, JSON, deriving converters, schema evolution, defaults, opaque fields, parsers, lexers, AST boundaries, Menhir, ocamllex, config, and command-line parsing.
+load_when:
+  - Task touches sexps, JSON, deriving converters, schema evolution, defaults, opaque fields, parsers, lexers, AST boundaries, Menhir/ocamllex grammar usage, config formats, or command-line parsing.
+skip_when:
+  - Task is compiler PPX implementation details; use compiler-ppx-ffi-and-codegen.md instead.
+search_terms:
+  - '[@@deriving sexp]'
+  - Yojson
+  - ATD
+  - defaults
+  - opaque
+  - Menhir
+  - ocamllex
+  - AST
+---
 # Serialization, JSON, S-Expressions, And Parsing
+
 ## Core Judgment
 Serialization is boundary code. Its job is to turn bytes into trusted values and trusted values back into bytes without letting wire-format accidents infect the rest of the program.
 Default pattern:

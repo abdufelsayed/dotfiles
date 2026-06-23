@@ -1,3 +1,18 @@
+---
+summary: GADTs, type-indexed values, typed ASTs, equality witnesses, type witnesses, existentials, locally abstract types, polymorphic recursion, and refutation cases.
+load_when:
+  - Task needs type-indexed values, typed ASTs, equality witnesses, type witnesses, existential packages, locally abstract types, polymorphic recursion, refutation cases, or APIs whose return type depends on a mode.
+skip_when:
+  - Ordinary variants plus validation are enough.
+search_terms:
+  - type a.
+  - Refl
+  - existential
+  - typed AST
+  - locally abstract
+  - polymorphic recursion
+  - refutation
+---
 # GADTs, Type Witnesses, And Existentials
 
 Use GADTs when the type checker should carry a proof that changes what code is legal. Do not use them just because the data feels fancy. They earn their keep when they delete dynamic checks, make illegal states unrepresentable, or let one API vary its return type in a way ordinary variants cannot express cleanly.

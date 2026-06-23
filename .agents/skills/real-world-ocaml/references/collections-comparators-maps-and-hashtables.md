@@ -1,3 +1,17 @@
+---
+summary: Collection choice, comparators, maps, sets, hashtables, equality, hashing, duplicate keys, and deterministic iteration.
+load_when:
+  - Task touches Map, Set, Hashtbl, association lists, equality, ordering, hashing, comparator witnesses, duplicate keys, or deterministic iteration.
+skip_when:
+  - Task is ordinary list recursion or a Dune-only edit.
+search_terms:
+  - Comparator.Make
+  - Map.empty
+  - Hashtbl.create
+  - Poly.compare
+  - duplicate keys
+  - deterministic output
+---
 # Collections, comparators, maps, and hashtables
 
 ## Core judgment

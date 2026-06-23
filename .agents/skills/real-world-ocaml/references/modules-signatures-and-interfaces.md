@@ -1,3 +1,19 @@
+---
+summary: Modules, signatures, .mli contracts, abstract/private types, module layout, nested modules, aliases, open, include, public APIs, and Dune visibility.
+load_when:
+  - Task touches .mli, public APIs, abstract/private types, module layout, nested modules, aliases, open, include, signature design, module boundaries, or Dune visibility.
+skip_when:
+  - Task is local implementation-only code and does not affect exposed names or representation.
+search_terms:
+  - .mli
+  - type t
+  - private
+  - abstract
+  - include
+  - open
+  - module alias
+  - public modules
+---
 # Modules, Signatures, And Interfaces
 
 ## Core Judgment

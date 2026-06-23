@@ -1,4 +1,19 @@
+---
+summary: Async, Lwt, Eio, blocking IO, cancellation, scheduler entrypoints, pipes, streams, backpressure, threads, domains, and timeout cleanup.
+load_when:
+  - Task touches Async, Lwt, Eio, blocking IO, cancellation, scheduler entrypoints, pipes, streams, backpressure, threads, domains, subprocesses, sockets, or timeout cleanup.
+skip_when:
+  - Task is pure domain logic even if the caller is async.
+search_terms:
+  - Deferred.t
+  - Lwt.t
+  - Eio_main.run
+  - blocking IO
+  - fire-and-forget
+  - backpressure
+---
 # Concurrency, IO, And Effects
+
 ## Core Judgment
 Follow the repository's concurrency model first. Async, Lwt, and Eio are different ecosystems with different assumptions about IO, cancellation, error propagation, and lifetime management. They are not interchangeable style choices.
 Default rules:

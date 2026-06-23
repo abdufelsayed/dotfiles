@@ -1,3 +1,18 @@
+---
+summary: Compiler pipeline, PPX, generated code, Menhir/ocamllex output, FFI, Ctypes, stubs, callbacks, and unsafe boundaries.
+load_when:
+  - Task touches PPX, generated code, Menhir/ocamllex output, compiler pipeline details, AST tooling, bytecode/native inspection, Ctypes, foreign stubs, C ABI, callbacks, or unsafe boundaries.
+skip_when:
+  - Task is ordinary parser usage and does not involve code generation or FFI.
+search_terms:
+  - parsetree
+  - typedtree
+  - ppxlib
+  - foreign_stubs
+  - ctypes-cstubs
+  - callback
+  - struct layout
+---
 # Compiler, PPX, FFI, And Codegen
 
 This reference is about boundaries that matter in real OCaml work:

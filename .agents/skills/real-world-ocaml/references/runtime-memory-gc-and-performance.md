@@ -1,3 +1,19 @@
+---
+summary: Runtime representation, allocation, immediates, heap blocks, boxed floats, arrays, closures, mutation, polymorphic compare, GC, profiling, benchmarking, and Obj.
+load_when:
+  - Task is performance-sensitive or touches allocation, runtime representation, floats, arrays, boxing, closure allocation, mutation, polymorphic compare in hot paths, GC behavior, profiling, benchmarking, FFI memory, or Obj.
+skip_when:
+  - Task is ordinary correctness work without performance pressure.
+search_terms:
+  - immediate
+  - heap block
+  - boxed float
+  - float array
+  - closure
+  - write barrier
+  - minor heap
+  - GC tuning
+---
 # Runtime, Memory, GC, And Performance
 
 OCaml performance gets much easier to reason about once you stop thinking in source-level categories and start thinking in runtime shapes: immediates, heap blocks, boxed floats, flat float arrays, closures, custom blocks, and a generational GC that loves short-lived allocation and charges for certain mutations.

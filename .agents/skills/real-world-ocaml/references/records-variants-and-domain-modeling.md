@@ -1,3 +1,18 @@
+---
+summary: Domain modeling with records, variants, polymorphic variants, constructor payloads, booleans-as-modes, state machines, mutable fields, and representation hiding.
+load_when:
+  - Task models domain data, chooses records vs variants, removes boolean flags, changes constructors, exposes record fields, adds mutable fields, uses polymorphic variants, or encodes state machines.
+skip_when:
+  - Task is collection choice or build-only metadata.
+search_terms:
+  - product types
+  - sum types
+  - Warning 9
+  - functional update
+  - mutable
+  - polymorphic variants
+  - state machines
+---
 # Records, Variants, and Domain Modeling
 
 ## Core judgment

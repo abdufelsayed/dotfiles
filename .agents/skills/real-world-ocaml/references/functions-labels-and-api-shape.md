@@ -1,3 +1,18 @@
+---
+summary: Function signatures, labeled and optional arguments, argument order, currying, partial application, pipelines, callbacks, builders, and wrapper forwarding.
+load_when:
+  - Task designs or changes function signatures, labeled/optional arguments, argument order, currying, partial application, pipelines, callbacks, builders, or wrapper forwarding.
+skip_when:
+  - Task is purely internal branch logic with stable APIs.
+search_terms:
+  - optional arguments
+  - ?arg
+  - labels
+  - pipeline
+  - partial application
+  - eta expansion
+  - call site
+---
 # Functions, Labels, and API Shape
 
 ## Core judgment

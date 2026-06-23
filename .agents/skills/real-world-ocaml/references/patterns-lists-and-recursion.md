@@ -1,3 +1,19 @@
+---
+summary: Pattern matching, list traversal, folds, recursion, exhaustiveness, guards, function, partial destructuring, tail recursion, accumulators, and append traps.
+load_when:
+  - Task changes pattern matches, list traversal, folds, recursion, exhaustiveness, guards, function, partial destructuring, tail recursion, accumulator style, or performance traps around @ and ^.
+skip_when:
+  - Task is about API labels, modules, or build metadata.
+search_terms:
+  - exhaustiveness
+  - _
+  - fold
+  - tail recursion
+  - accumulator
+  - filter_map
+  - '@'
+  - ^
+---
 # Patterns, Lists, and Recursion
 
 ## Core judgment

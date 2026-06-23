@@ -1,3 +1,19 @@
+---
+summary: Testing strategy, inline tests, expect tests, cram tests, Alcotest-style executables, property tests, deterministic output, promotion, and test-only libraries.
+load_when:
+  - Task adds or changes tests, chooses test style, uses inline tests, expect tests, cram tests, Alcotest-style executables, property tests, deterministic output, promotion, or test-only libraries.
+skip_when:
+  - Task is a code-only edit and existing tests already show the pattern.
+search_terms:
+  - let%test
+  - let%expect_test
+  - cram
+  - Alcotest
+  - QCheck
+  - promotion
+  - deterministic
+  - test-only
+---
 # Testing: inline, expect, cram, and properties
 
 ## Core judgment

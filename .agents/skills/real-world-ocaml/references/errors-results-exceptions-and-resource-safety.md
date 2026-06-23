@@ -1,4 +1,20 @@
+---
+summary: Option, result, Or_error, exceptions, error boundaries, diagnostics, backtraces, cleanup, protect, finalizers, and resource safety.
+load_when:
+  - Task chooses or changes option, result, Or_error.t, exceptions, error messages, backtraces, cleanup, protect, with_* helpers, finalizers, timeout cleanup, or async resource safety.
+skip_when:
+  - Failure convention is already obvious and unchanged.
+search_terms:
+  - Error.tag
+  - Or_error
+  - try_with
+  - Exn.protect
+  - finally
+  - backtrace
+  - finalizer
+---
 # Errors, Results, Exceptions, And Resource Safety
+
 ## Core Judgment
 In OCaml, error handling is API design. Pick the failure mechanism that matches the caller's job and keep that choice stable inside the boundary:
 - `option` for benign absence

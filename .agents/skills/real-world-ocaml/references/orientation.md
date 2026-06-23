@@ -1,3 +1,17 @@
+---
+summary: Repo audit workflow, greenfield layout, dialect/runtime detection, Dune/opam inspection, and reference selection.
+load_when:
+  - Repo is unfamiliar, change is broad, architecture is uncertain, project is greenfield, dependency boundaries matter, or the right topic reference is unclear.
+skip_when:
+  - Task is a tiny edit in a repo already understood.
+search_terms:
+  - First Pass
+  - Greenfield
+  - dune-project
+  - local dialect
+  - runtime model
+  - Which Reference
+---
 # Orientation
 
 ## What This Skill Is For

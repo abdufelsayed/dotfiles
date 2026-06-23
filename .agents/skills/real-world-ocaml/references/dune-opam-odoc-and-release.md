@@ -1,3 +1,18 @@
+---
+summary: Dune, dune-project, opam, library/executable/test stanzas, public/private libraries, PPX wiring, odoc, package constraints, pins, and releases.
+load_when:
+  - Task touches dune, dune-project, opam files, library/executable/test stanzas, public/private libraries, PPX wiring, Menhir/ocamllex stanzas, foreign stubs, odoc, package constraints, pins, or release flow.
+skip_when:
+  - Task is a pure .ml edit and does not change dependencies, tests, docs, or package surfaces.
+search_terms:
+  - public_name
+  - generate_opam_files
+  - private_modules
+  - with-test
+  - '@opam'
+  - foreign_stubs
+  - odoc
+---
 # Dune, opam, odoc, and release workflow
 
 ## Core judgment
