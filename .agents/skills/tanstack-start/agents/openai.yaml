@@ -1,4 +1,0 @@
-interface:
-  display_name: "TanStack Start"
-  short_description: "Build and reason about TanStack Start"
-  default_prompt: "Use $tanstack-start to work on this React TanStack Start app, focusing on routing context, validated search params, TanStack Query, auth guards, and server boundaries."
